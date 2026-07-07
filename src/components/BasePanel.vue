@@ -21,6 +21,7 @@ defineProps<{
 
 <style scoped>
 .base-panel {
+  height: 100%;
   background: linear-gradient(135deg, rgba(6, 24, 54, 0.85) 0%, rgba(10, 35, 75, 0.7) 100%);
   border: 1px solid rgba(0, 180, 255, 0.25);
   border-radius: 6px;
@@ -39,7 +40,7 @@ defineProps<{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 16px;
+  padding: 5px 10px;
   border-bottom: 1px solid rgba(0, 180, 255, 0.15);
   background: linear-gradient(90deg, rgba(0, 150, 255, 0.12) 0%, transparent 100%);
 }
@@ -70,7 +71,8 @@ defineProps<{
 
 .base-panel__body {
   flex: 1;
-  padding: 12px;
+  position: relative;
+  padding: 6px 8px;
   min-height: 0;
 }
 </style>

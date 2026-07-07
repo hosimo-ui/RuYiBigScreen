@@ -3,7 +3,7 @@
     <VChart
       :option="chartOption"
       :autoresize="true"
-      style="height: 100%; min-height: 360px"
+      style="position: absolute; inset: 6px 8px"
     />
   </BasePanel>
 </template>

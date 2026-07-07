@@ -30,8 +30,8 @@ defineProps<{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
-  padding: 0 24px;
+  height: 48px;
+  padding: 0 16px;
   background: linear-gradient(180deg, rgba(0, 100, 200, 0.15) 0%, transparent 100%);
   border-bottom: 1px solid rgba(0, 180, 255, 0.2);
   position: relative;
@@ -77,10 +77,10 @@ defineProps<{
 
 .screen-header__title {
   margin: 0;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
   color: #e0f0ff;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   background: linear-gradient(90deg, #00d4ff, #7c8dff, #00d4ff);
   background-clip: text;
   -webkit-background-clip: text;

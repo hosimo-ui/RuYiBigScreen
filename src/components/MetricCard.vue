@@ -40,8 +40,8 @@ const displayValue = computed(() => {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 16px 20px;
+  gap: 10px;
+  padding: 10px 14px;
   border-radius: 6px;
   background: linear-gradient(135deg, rgba(6, 24, 54, 0.9) 0%, rgba(10, 35, 75, 0.75) 100%);
   border: 1px solid rgba(0, 180, 255, 0.2);
@@ -82,13 +82,13 @@ const displayValue = computed(() => {
 }
 
 .metric-card__icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 18px;
   flex-shrink: 0;
 }
 
@@ -130,7 +130,7 @@ const displayValue = computed(() => {
 }
 
 .metric-card__number {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 700;
   color: #fff;
   font-family: 'DIN Alternate', 'Consolas', monospace;

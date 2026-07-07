@@ -107,8 +107,8 @@ const store = useDashboardStore()
 .big-screen__body {
   flex: 1;
   display: flex;
-  padding: 10px 16px 12px;
-  gap: 14px;
+  padding: 4px 12px 6px;
+  gap: 8px;
   min-height: 0;
 }
 
@@ -117,21 +117,21 @@ const store = useDashboardStore()
   flex: 0 0 340px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
 }
 
 .big-screen__center {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
   min-width: 0;
 }
 
 .big-screen__metrics {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 8px;
 }
 
 .big-screen__map {
@@ -140,21 +140,21 @@ const store = useDashboardStore()
 }
 
 .big-screen__activity {
-  height: 200px;
+  height: 160px;
   flex-shrink: 0;
 }
 
 .big-screen__chart {
   flex: 1;
-  min-height: 200px;
+  min-height: 180px;
 }
 
 .activity-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   overflow-y: auto;
-  max-height: 160px;
+  max-height: 120px;
 }
 
 .activity-item {
