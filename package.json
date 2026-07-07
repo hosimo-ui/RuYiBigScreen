@@ -1,0 +1,58 @@
+{
+  "name": "ruyi-big-screen",
+  "private": true,
+  "version": "1.0.0",
+  "description": "如意数据大屏 - 教学型数据可视化大屏项目",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.ts,.tsx --fix",
+    "lint:style": "stylelint \"src/**/*.{css,scss,vue}\" --fix",
+    "format": "prettier --write \"src/**/*.{ts,vue,css,scss,json}\"",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "type-check": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "dayjs": "^1.11.13",
+    "echarts": "^5.5.1",
+    "pinia": "^2.3.0",
+    "vue": "^3.5.13",
+    "vue-echarts": "^7.0.3"
+  },
+  "devDependencies": {
+    "@mswjs/interceptors": "^0.37.5",
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.5",
+    "@typescript-eslint/eslint-plugin": "^8.19.0",
+    "@typescript-eslint/parser": "^8.19.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.7.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-vue": "^9.32.0",
+    "happy-dom": "^16.0.1",
+    "msw": "^2.7.0",
+    "postcss": "^8.4.49",
+    "postcss-html": "^1.7.0",
+    "prettier": "^3.4.2",
+    "stylelint": "^16.12.0",
+    "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-standard": "^36.0.1",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.6",
+    "vitest": "^2.1.8",
+    "vue-tsc": "^2.2.0"
+  },
+  "msw": {
+    "workerDirectory": ["public"]
+  }
+}
