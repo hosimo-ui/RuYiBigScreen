@@ -64,6 +64,14 @@ export interface MapPoint {
   level: number
 }
 
+/** 数据中枢业务节点 */
+export interface HubNode {
+  name: string
+  value: number
+  status: 'good' | 'warning' | 'danger'
+  description: string
+}
+
 /** 完整的仪表板数据 */
 export interface DashboardData {
   summary: SummaryMetrics
@@ -73,4 +81,5 @@ export interface DashboardData {
   radar: RadarData
   activities: ActivityItem[]
   mapPoints: MapPoint[]
+  hubNodes: HubNode[]
 }

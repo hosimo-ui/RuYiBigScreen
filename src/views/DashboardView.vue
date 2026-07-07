@@ -17,15 +17,17 @@ import { useDashboardStore } from '@/stores/dashboardStore'
 
 const store = useDashboardStore()
 
-onMounted(() => {
+onMounted(async () => {
   if (!store.isLoaded) {
-    store.loadAllData()
+    await store.loadAllData()
   }
   store.startTimeUpdate()
+  store.startRealtime()
 })
 
 onUnmounted(() => {
   store.stopTimeUpdate()
+  store.stopRealtime()
 })
 </script>
 

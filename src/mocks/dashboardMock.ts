@@ -102,4 +102,14 @@ export const dashboardMockData: DashboardData = {
     { name: '重庆', value: [106.55, 29.57], level: 2 },
     { name: '西安', value: [108.94, 34.26], level: 1 },
   ],
+  hubNodes: [
+    { name: '课程学习', value: 85, status: 'good', description: '课程访问稳定，学习进度正常' },
+    { name: '项目实战', value: 78, status: 'good', description: '实战项目提交活跃' },
+    { name: '资料下载', value: 72, status: 'good', description: '下载服务响应正常' },
+    { name: '问答互动', value: 68, status: 'warning', description: '问答区活跃度略低于平均值' },
+    { name: '教师端', value: 90, status: 'good', description: '教师端服务运行良好' },
+    { name: '学员端', value: 82, status: 'good', description: '学员端连接稳定' },
+    { name: '数据服务', value: 88, status: 'good', description: '数据同步正常' },
+    { name: '告警中心', value: 55, status: 'warning', description: '存在少量未处理告警' },
+  ],
 }

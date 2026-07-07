@@ -43,9 +43,14 @@
             :decimals="1"
           />
         </div>
-        <!-- 地图/态势总览 -->
-        <div class="big-screen__map">
-          <MapOverviewChart :data="store.mapPoints" />
+        <!-- 数据中枢 + 态势总览 并排 -->
+        <div class="big-screen__hub-row">
+          <div class="big-screen__hub">
+            <DataHubChart :data="store.hubNodes" />
+          </div>
+          <div class="big-screen__map">
+            <MapOverviewChart :data="store.mapPoints" />
+          </div>
         </div>
         <!-- 底部活动列表 -->
         <div class="big-screen__activity">
@@ -87,6 +92,7 @@ import PieStatusChart from '@/charts/PieStatusChart.vue'
 import BarRankingChart from '@/charts/BarRankingChart.vue'
 import RadarAbilityChart from '@/charts/RadarAbilityChart.vue'
 import MapOverviewChart from '@/charts/MapOverviewChart.vue'
+import DataHubChart from '@/charts/DataHubChart.vue'
 import { useDashboardStore } from '@/stores/dashboardStore'
 import { formatRelativeTime } from '@/utils/format'
 
@@ -132,6 +138,17 @@ const store = useDashboardStore()
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
+}
+
+.big-screen__hub-row {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  min-height: 300px;
+}
+
+.big-screen__hub {
+  flex: 0 0 480px;
 }
 
 .big-screen__map {
