@@ -1,8 +1,16 @@
 node_modules
 dist
 *.local
+.env
 .env.local
 .env.*.local
 test-results
+playwright-report
+coverage
 src/tests/e2e/screenshots
 *.tsbuildinfo
+*.log
+vite.config.d.ts
+playwright.config.d.ts
+.DS_Store
+Thumbs.db
