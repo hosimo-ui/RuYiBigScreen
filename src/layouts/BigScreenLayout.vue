@@ -17,25 +17,28 @@
         <!-- 指标卡片 -->
         <div class="big-screen__metrics">
           <MetricCard
-            label="今日访问量"
+            label="主机总数"
             :value="store.summary?.todayVisits ?? 0"
-            icon="&#x1F4C8;"
+            unit="台"
+            icon="&#x1F5A5;"
             variant="primary"
           />
           <MetricCard
-            label="实时订单数"
+            label="采集记录数"
             :value="store.summary?.realtimeOrders ?? 0"
             icon="&#x1F4E6;"
             variant="success"
           />
           <MetricCard
-            label="活跃用户数"
+            label="CPU平均使用率"
             :value="store.summary?.activeUsers ?? 0"
-            icon="&#x1F465;"
+            unit="%"
+            icon="&#x1F4CA;"
             variant="info"
+            :decimals="1"
           />
           <MetricCard
-            label="系统健康度"
+            label="磁盘使用率"
             :value="store.summary?.systemHealth ?? 0"
             unit="%"
             icon="&#x2764;"
@@ -54,7 +57,7 @@
         </div>
         <!-- 底部活动列表 -->
         <div class="big-screen__activity">
-          <BasePanel title="实时动态">
+          <BasePanel title="监控告警">
             <div class="activity-list">
               <div
                 v-for="item in store.activities"

@@ -1,5 +1,5 @@
 <template>
-  <BasePanel title="分类占比">
+  <BasePanel title="机房分布">
     <VChart
       :option="chartOption"
       :autoresize="true"

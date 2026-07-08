@@ -22,7 +22,8 @@ onMounted(async () => {
     await store.loadAllData()
   }
   store.startTimeUpdate()
-  store.startRealtime()
+  // 数据来自 MySQL，用定时轮询代替内存模拟器
+  setInterval(() => { store.loadAllData() }, 10000)
 })
 
 onUnmounted(() => {

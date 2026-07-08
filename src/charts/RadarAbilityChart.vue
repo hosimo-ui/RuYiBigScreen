@@ -1,5 +1,5 @@
 <template>
-  <BasePanel title="能力雷达">
+  <BasePanel title="系统健康雷达">
     <VChart
       :option="chartOption"
       :autoresize="true"

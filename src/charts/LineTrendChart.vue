@@ -1,5 +1,5 @@
 <template>
-  <BasePanel title="访问趋势">
+  <BasePanel title="CPU与内存趋势">
     <VChart
       :option="chartOption"
       :autoresize="true"

@@ -1,5 +1,5 @@
 <template>
-  <BasePanel title="全国态势总览">
+  <BasePanel title="主机状态矩阵">
     <VChart
       :option="chartOption"
       :autoresize="true"
@@ -13,37 +13,35 @@ import { computed } from 'vue'
 import VChart from 'vue-echarts'
 import { use } from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
-import { ScatterChart, EffectScatterChart, LinesChart } from 'echarts/charts'
+import { ScatterChart, EffectScatterChart } from 'echarts/charts'
 import { TooltipComponent, GridComponent } from 'echarts/components'
 import type { MapPoint } from '@/types/dashboard'
 
-use([CanvasRenderer, ScatterChart, EffectScatterChart, LinesChart, TooltipComponent, GridComponent])
+use([CanvasRenderer, ScatterChart, EffectScatterChart, TooltipComponent, GridComponent])
 
 const props = defineProps<{
   data: MapPoint[]
 }>()
 
-// 中国城市坐标映射到 0-100 范围
-const COORD_MAP: Record<string, [number, number]> = {
-  北京: [65, 78],
-  上海: [78, 52],
-  广州: [62, 18],
-  深圳: [63, 15],
-  杭州: [74, 48],
-  成都: [30, 35],
-  武汉: [58, 45],
-  南京: [72, 54],
-  重庆: [36, 28],
-  西安: [38, 52],
+const ROOM_LABELS = ['', 'A机房', 'B机房', 'C机房', 'D机房', 'E机房']
+
+const STATUS_COLORS: Record<number, string> = {
+  1: '#ff5252',
+  3: '#ffab40',
+  5: '#00e676',
+}
+
+const STATUS_TEXT: Record<number, string> = {
+  1: '异常',
+  3: '告警',
+  5: '正常',
 }
 
 const chartOption = computed(() => {
-  const points = props.data
-    .filter((p) => COORD_MAP[p.name])
-    .map((p) => ({
-      name: p.name,
-      value: [...COORD_MAP[p.name], p.level * 8],
-    }))
+  const points = props.data.map((p) => ({
+    name: p.name,
+    value: [p.value[1], -p.value[0], p.level],
+  }))
 
   return {
     tooltip: {
@@ -52,88 +50,55 @@ const chartOption = computed(() => {
       borderColor: 'rgba(0, 180, 255, 0.4)',
       textStyle: { color: '#c8e6ff', fontSize: 12 },
       formatter: (p: { name: string; value: number[] }) =>
-        `<b>${p.name}</b><br/>活跃指数: ${((p.value[2] / 8) * 20).toFixed(0)}`,
+        `<b>${p.name}</b><br/>状态: ${STATUS_TEXT[p.value[2]] || '未知'}`,
     },
-    grid: {
-      top: 8,
-      left: 8,
-      right: 8,
-      bottom: 8,
-    },
+    grid: { top: 8, left: 50, right: 16, bottom: 16 },
     xAxis: {
       type: 'value',
+      name: '机柜',
       min: 0,
-      max: 100,
-      show: false,
+      max: 13,
+      interval: 1,
+      axisLabel: { color: '#6688aa', fontSize: 10 },
+      axisLine: { lineStyle: { color: 'rgba(255,255,255,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } },
     },
     yAxis: {
       type: 'value',
-      min: 0,
-      max: 100,
-      show: false,
+      name: '机房',
+      min: -6,
+      max: 0,
+      interval: 1,
+      axisLabel: {
+        color: '#8899bb',
+        fontSize: 10,
+        formatter: (v: number) => ROOM_LABELS[-v] || '',
+      },
+      axisLine: { lineStyle: { color: 'rgba(255,255,255,0.15)' } },
+      splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } },
     },
     series: [
-      // 背景连接线
-      {
-        type: 'lines',
-        coordinateSystem: 'cartesian2d',
-        polyline: false,
-        data: generateConnections(points),
-        lineStyle: {
-          color: 'rgba(0, 180, 255, 0.12)',
-          width: 0.5,
-          curveness: 0.2,
-        },
-        effect: {
-          show: true,
-          period: 8,
-          trailLength: 0.2,
-          symbolSize: 3,
-          color: 'rgba(0, 212, 255, 0.5)',
-        },
-        zlevel: 0,
-      },
-      // 普通闪烁点
       {
         type: 'effectScatter',
         data: points,
-        symbolSize: (val: number[]) => Math.max(val[2], 6),
+        symbolSize: 14,
         showEffectOn: 'render',
-        rippleEffect: {
-          brushType: 'stroke' as const,
-          scale: 3,
-          period: 4,
-          color: 'rgba(0, 212, 255, 0.4)',
-        },
+        rippleEffect: { brushType: 'stroke' as const, scale: 2.5, period: 3 },
         itemStyle: {
-          color: '#00d4ff',
-          shadowBlur: 10,
-          shadowColor: '#00d4ff',
+          color: (p: { value: number[] }) => STATUS_COLORS[p.value[2]] || '#00d4ff',
+          shadowBlur: 6,
+          shadowColor: 'rgba(0,200,255,0.3)',
         },
         label: {
           show: true,
           position: 'right' as const,
           formatter: '{b}',
           color: '#8899bb',
-          fontSize: 10,
+          fontSize: 9,
         },
         zlevel: 1,
       },
     ],
   }
 })
-
-function generateConnections(points: { value: number[] }[]): { coords: number[][] }[] {
-  const result: { coords: number[][] }[] = []
-  for (let i = 0; i < points.length; i++) {
-    for (let j = i + 1; j < points.length; j++) {
-      if (Math.random() > 0.6) {
-        result.push({
-          coords: [points[i].value.slice(0, 2), points[j].value.slice(0, 2)],
-        })
-      }
-    }
-  }
-  return result
-}
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <BasePanel title="如意数据中枢">
+  <BasePanel title="主机实时状态">
     <div class="hub-grid">
       <div
         v-for="node in data"

@@ -1,5 +1,5 @@
 <template>
-  <BasePanel title="城市排名">
+  <BasePanel title="主机负载排名">
     <VChart
       :option="chartOption"
       :autoresize="true"
